@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""takes a list of floats as arguments 
+"""takes a list of floats as arguments
 returns sum as a float"""
 
 from typing import List
