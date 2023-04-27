@@ -4,7 +4,9 @@
 
 from typing import Sequence, List, Any, Union
 
+
 def safe_first_element(lst: Sequence[Any]) -> List[Union[Any, None]]:
+    """if a list returns the first element else returns none"""
     if lst:
         return lst[0]
     else:
