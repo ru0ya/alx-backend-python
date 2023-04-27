@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """takes a list of floats as arguments
 returns sum as a float"""
 
