@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """Async Comprehensions"""
 
 
@@ -13,8 +14,7 @@ async def async_comprehension() -> List[float]:
 
     Parameters: None
 
-    Returne: 10 random numbers
+    Returns: 10 random numbers
     """
-    for i in range(10):
-        result = [number async for number in async_generator()]
+    result = [number async for number in async_generator()]
     return result

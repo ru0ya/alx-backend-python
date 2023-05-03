@@ -4,9 +4,10 @@
 
 import asyncio
 from time import perf_counter
+from importlib import import_module as find
 
 
-async_comprehension = __import__('1-async_comprehension').async_comprehension
+async_comprehension = find('1-async_comprehension').async_comprehension
 
 
 async def measure_runtime() -> float:
