@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """takes two arguments: key and value and
 accepts any dictionary like object"""
 

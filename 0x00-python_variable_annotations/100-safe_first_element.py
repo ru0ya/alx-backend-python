@@ -2,10 +2,10 @@
 """duck typing-first element of a sequence"""
 
 
-from typing import Sequence, Any, Union, NoneType
+from typing import Sequence, Any, Union
 
 
-def safe_first_element(lst: Sequence[Any]) -> Union[Any, NoneType]:
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """if a list returns the first element else returns none"""
     if lst:
         return lst[0]
