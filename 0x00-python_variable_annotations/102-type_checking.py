@@ -2,16 +2,15 @@
 
 from typing import Tuple, Any, Union, List
 
-def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> Tuple[int, ...]:
-    zoomed_in: Tuple[int, ...] = tuple([
-        item for item in lst
-        for i in range(factor)
-    ])
+def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> List[int]:
+    zoomed_in: List[int] = []
+    for item in lst:
+        zoomed_in.extend([item] * factor)
     return zoomed_in
 
 
-array: Tuple[int, ...] = [12, 72, 91]
+array: Tuple[int, int, int] = (12, 72, 91)
 
-zoom_2x = zoom_array(tuple(array))
+zoom_2x: List[int] = zoom_array(array)
 
-zoom_3x = zoom_array(tuple(array), 3)
+zoom_3x: List[int] = zoom_array(array, 3)
