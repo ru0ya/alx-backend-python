@@ -2,7 +2,7 @@
 
 from typing import Tuple, Any, Union, List
 
-def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> List[int]:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     zoomed_in: List[int] = []
     for item in lst:
         zoomed_in.extend([item] * factor)
