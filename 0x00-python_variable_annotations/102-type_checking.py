@@ -10,10 +10,12 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """
     zoomed_in: List[int] = []
     for item in lst:
+        # looping through lst
         zoomed_in.extend([item] * factor)
     return zoomed_in
 
 
+# Tests to run
 array: Tuple[int, int, int] = (12, 72, 91)
 
 zoom_2x: List[int] = zoom_array(array)
