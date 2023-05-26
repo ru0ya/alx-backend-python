@@ -30,7 +30,6 @@ class TestAccessNestedMap(unittest.TestCase):
         value associated with provided key path in
         nested map
         """
-#        result = test_access_nested_map(nested_map, path)
         self.assertEqual(test_access_nested_map(nested_map,path), expected_result)
 
     @parameterized.expand([
@@ -74,13 +73,20 @@ class TestGetJson(unittest.TestCase):
 class TestMemoize(unittest.TestCase):
     """Memoization"""
     def test_memoize():
-
+        """memoize method"""
         class TestClass:
-
+            """class"""
             @mock.patch('utils.memoize')
             def a_method(self):
+                """method"""
                 return 42
 
             @memoize
+            """property"""
             def a_property(self):
                 return self.a_method()
+        with patch.object(TestClass, "a_method") as mockMethod:
+            test_class = TestClass()
+            test_class.a_property
+            test_class.a_property
+            mockMethod.assert_called_once
