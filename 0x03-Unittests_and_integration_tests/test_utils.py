@@ -6,10 +6,12 @@ Unit test for utils.access_nested_map
 
 
 import unittest
+from unittest import mock
 from parameterized import parameterized
+from utils import get_json
 
 
-access_nested_map = __import__('utils').access_nested_map
+from utils import access_nested_map
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -28,8 +30,8 @@ class TestAccessNestedMap(unittest.TestCase):
         value associated with provided key path in
         nested map
         """
-        result = access_nested_map(nested_map, path)
-        self.assertEqual(result, expected_result)
+#        result = test_access_nested_map(nested_map, path)
+        self.assertEqual(test_access_nested_map(nested_map,path), expected_result)
 
     @parameterized.expand([
         ({}, ("a",)),
@@ -44,4 +46,41 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError) as err:
             access_nested_map(nested_map, path)
 
-        self.assertEqual(str(err.exception), f"'{path[-1]}'")
+        self.assertEqual(err.exception, f"'{path[-1]}'")
+
+
+class TestGetJson(unittest.TestCase):
+    """
+    Methods to test if result is expected
+    """
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+        ])
+    @mock.patch('utils.requests.get')
+    def test_get_json(self, test_url, test_payload, mock_get):
+        """
+        Tests that utils.get_json returns expected result
+        """
+        mock_response = mock.Mock()
+        mock_response.json.return_value = test_payload
+        mock_get.return_value = mock_response
+
+        result = get_json(test_url)
+
+        mock_get.assert_called_once_with(test_url)
+        self.assertEqual(result, test_payload)
+
+class TestMemoize(unittest.TestCase):
+    """Memoization"""
+    def test_memoize():
+
+        class TestClass:
+
+            @mock.patch('utils.memoize')
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
