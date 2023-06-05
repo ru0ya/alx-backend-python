@@ -30,7 +30,7 @@ class TestAccessNestedMap(unittest.TestCase):
         value associated with provided key path in
         nested map
         """
-        self.assertEqual(test_access_nested_map(nested_map, path),
+        self.assertEqual(access_nested_map(nested_map, path),
                          expected_result)
 
     @parameterized.expand([
@@ -46,7 +46,7 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError) as err:
             access_nested_map(nested_map, path)
 
-        self.assertEqual(err.exception, f"'{path[-1]}'")
+        self.assertEqual(err.exception.args[0], path[-1])
 
 
 class TestGetJson(unittest.TestCase):
@@ -62,9 +62,7 @@ class TestGetJson(unittest.TestCase):
         """
         Tests that utils.get_json returns expected result
         """
-        mock_response = mock.Mock()
-        mock_response.json.return_value = test_payload
-        mock_get.return_value = mock_response
+        mock_get.return_value = test_payload
 
         result = get_json(test_url)
 
