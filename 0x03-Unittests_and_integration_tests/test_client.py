@@ -5,6 +5,7 @@ Method to test for correct value
 
 
 import utils
+import unittests
 from parameterized import parameterized
 from utils import get_json
 from unittest.mock import patch
