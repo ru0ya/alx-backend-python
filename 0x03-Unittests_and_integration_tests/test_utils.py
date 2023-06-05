@@ -6,7 +6,9 @@ from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """Unit tests for access_nested_map function."""
+    """
+    Unit tests for access_nested_map function.
+    """
 
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
@@ -14,7 +16,9 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a", "b"), 2),
     ])
     def test_access_nested_map(self, nested_map, path, answer):
-        """Test access_nested_map function."""
+        """
+        Test access_nested_map function.
+        """
         result = access_nested_map(nested_map, path)
         self.assertEqual(result, answer)
 
@@ -23,14 +27,18 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": 1}, ("a", "b")),
     ])
     def test_access_nested_map_exception(self, nested_map, path):
-        """Test access_nested_map function for KeyError."""
+        """
+        Test access_nested_map function for KeyError.
+        """
         with self.assertRaises(KeyError) as error:
             access_nested_map(nested_map, path)
         self.assertEqual(error.exception.args[0], path[-1])
 
 
 class TestGetJson(unittest.TestCase):
-    """Unit tests for get_json function."""
+    """
+    Unit tests for get_json function.
+    """
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
@@ -38,26 +46,38 @@ class TestGetJson(unittest.TestCase):
     ])
     @patch('test_utils.get_json')
     def test_get_json(self, test_url, test_payload, mock_get):
-        """Test get_json function."""
+        """
+        Test get_json function.
+        """
         mock_get.return_value = test_payload
         result = get_json(test_url)
         self.assertEqual(result, test_payload)
 
 
 class TestMemoize(unittest.TestCase):
-    """Unit tests for memoize decorator."""
+    """
+    Unit tests for memoize decorator.
+    """
 
     def test_memoize(self):
-        """Test memoize decorator."""
+        """
+        Test memoize decorator.
+        """
         class TestClass:
-            """Test class."""
+            """
+            Test class.
+            """
             def a_method(self):
-                """Test method."""
+                """
+                Test method.
+                """
                 return 42
 
             @memoize
             def a_property(self):
-                """Test property."""
+                """
+                Test property.
+                """
                 return self.a_method()
 
         with patch.object(TestClass, "a_method") as mockMethod:
